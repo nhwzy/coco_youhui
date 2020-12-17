@@ -9,6 +9,7 @@
     <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
     <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
     <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <meta charset="utf-8">
 {% endblock %}
 {% block content %}
     <div id="primary" class="site-content">
@@ -25,11 +26,11 @@
                 {% endfor %}
                 {% if page.has_previous or page.has_next %}
                     <nav id="nav-below" class="navigation" role="navigation">
-                        <h3 class="assistive-text">文章导航</h3>
+                        <h3 class="assistive-text">奶茶优惠搜索</h3>
                         {% if page.has_previous %}
                             <div class="nav-previous"><a
                                     href="?q={{ query }}&amp;page={{ page.previous_page_number }}"><span
-                                    class="meta-nav">&larr;</span> 早期文章</a></div>
+                                    class="meta-nav">&larr;</span> 奶茶优惠</a></div>
                         {% endif %}
                         {% if page.has_next %}
                             <div class="nav-next"><a href="?q={{ query }}&amp;page={{ page.next_page_number }}">较新文章

@@ -1,9 +1,10 @@
 {% load blog_tags %}
+<meta charset="utf-8">
 <div id="secondary" class="widget-area" role="complementary">
     <aside id="search-2" class="widget widget_search">
         <form role="search" method="get" id="searchform" class="searchform" action="/search">
             <div>
-                <label class="screen-reader-text" for="s">搜索：</label>
+                <label class="screen-reader-text" for="s">奶茶优惠搜索：</label>
                 <input type="text" value="" name="q" id="q"/>
                 <input type="submit" id="searchsubmit" value="搜索"/>
             </div>
@@ -45,34 +46,6 @@
             </ul>
         </aside>
     {% endif %}
-    {% if sidebar_comments and  open_site_comment %}
-        <aside id="ds-recent-comments-4" class="widget ds-widget-recent-comments"><h3 class="widget-title">近期评论</h3>
-            {% comment %}<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1"
-            data-show-title="1" data-show-admin="1" data-avatar-size="30" data-excerpt-length="70"></ul>{% endcomment %}
-            <ul id="recentcomments">
-                {% for c in sidebar_comments %}
-                    <li class="recentcomments">
-                <span class="comment-author-link">
-                    {{ c.author.username }}</span>
-                        发表在《
-                        <a href="{{ c.article.get_absolute_url }}#comment-{{ c.pk }}">{{ c.article.title }}</a>》
-                    </li>
-                {% endfor %}
-            </ul>
-        </aside>
-    {% endif %}
-    {% if recent_articles %}
-        <aside id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">近期文章</h3>
-            <ul>
-
-                {% for a in  recent_articles %}
-                    <li><a href="{{ a.get_absolute_url }}" title="{{ a.title }}">
-                        {{ a.title }}
-                    </a></li>
-                {% endfor %}
-            </ul>
-        </aside>
-    {% endif %}
     {% if sidabar_links %}
         <aside id="linkcat-0" class="widget widget_links"><h3 class="widget-title">书签</h3>
             <ul class='xoxo blogroll'>
@@ -104,14 +77,14 @@
             </div>
         </aside>
     {% endif %}
-    <aside id="text-2" class="widget widget_text"><h3 class="widget-title">欢迎您star或者fork本站源代码</h3>
+    <aside id="text-2" class="widget widget_text"><h3 class="widget-title">欢迎您查看源代码</h3>
         <div class="textwidget">
 
-            <p><a href="https://github.com/liangliangyy/DjangoBlog" rel="nofollow"><img
-                    src="https://resource.lylinux.net/img.shields.io/github/stars/liangliangyy/djangoblog.svg?style=social&amp;label=Star"
-                    alt="GitHub stars"></a> <a href="https://github.com/liangliangyy/DjangoBlog" rel="nofollow"><img
-                    src="https://resource.lylinux.net/img.shields.io/github/forks/liangliangyy/djangoblog.svg?style=social&amp;label=Fork"
-                    alt="GitHub forks"></a></p>
+            <p><a href="https://github.com/nhwzy/coco_youhui.git" rel="nofollow"><img
+                    src="https://resource.lylinux.net/img.shields.io/github/stars/liangliangyy/djangoblog.svg?style=social&amp;label=查看"
+                    alt="GitHub stars"></a> <a href="https://github.com/nhwzy/coco_youhui.git" rel="nofollow">
+            </a>
+            </p>
         </div>
     </aside>
     <aside id="meta-2" class="widget widget_meta"><h3 class="widget-title">功能</h3>

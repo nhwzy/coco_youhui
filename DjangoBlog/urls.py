@@ -45,11 +45,9 @@ urlpatterns = [
     url(r'', include('oauth.urls', namespace='oauth')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^feed/$', DjangoBlogFeed()),
-    url(r'^rss/$', DjangoBlogFeed()),
     url(r'^search', include('haystack.urls'), name='search'),
     url(r'', include('servermanager.urls', namespace='servermanager')),
-    url(r'', include('owntracks.urls', namespace='owntracks'))
+    url(r'', include('owntracks.urls', namespace='owntracks')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
