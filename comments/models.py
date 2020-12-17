@@ -16,7 +16,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE)
     article = models.ForeignKey(
         Article,
-        verbose_name='文章',
+        verbose_name='奶茶',
         on_delete=models.CASCADE)
     parent_comment = models.ForeignKey(
         'self',
