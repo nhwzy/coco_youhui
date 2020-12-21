@@ -75,4 +75,8 @@ urlpatterns = [
     path(
         r'refresh',
         views.refresh_memcache,
-        name='refresh')]
+        name='refresh'),
+    path(
+        r'coco.html',
+        #TODO(),
+        name='coco')]
