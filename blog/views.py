@@ -308,8 +308,8 @@ def fileupload(request):
         return HttpResponse("only for post")
 
 
-#def gotococo(request):
-    #TODO()
+
+    
 
 @login_required
 def refresh_memcache(request):

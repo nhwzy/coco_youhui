@@ -143,8 +143,8 @@ def get_blog_setting():
         if not BlogSettings.objects.count():
             setting = BlogSettings()
             setting.sitename = 'DjangoBlog'
-            setting.site_description = '基于Django的博客系统'
-            setting.site_seo_description = '基于Django的博客系统'
+            setting.site_description = '基于python的coco奶茶优惠信息查询系统'
+            setting.site_seo_description = '基于python的coco奶茶优惠信息查询系统'
             setting.site_keywords = 'Django,Python'
             setting.article_sub_length = 300
             setting.sidebar_article_count = 10
