@@ -86,7 +86,7 @@ def truncate(content):
     return strip_tags(content)[:150]
 
 
-@register.inclusion_tag('blog/tags/breadcrumb.html')
+@register.inclusion_tag('Coco/tags/breadcrumb.html')
 def load_breadcrumb(article):
     """
     获得文章面包屑
@@ -106,7 +106,7 @@ def load_breadcrumb(article):
     }
 
 
-@register.inclusion_tag('blog/tags/article_tag_list.html')
+@register.inclusion_tag('Coco/tags/article_tag_list.html')
 def load_articletags(article):
     """
     文章标签
@@ -126,7 +126,7 @@ def load_articletags(article):
     }
 
 
-@register.inclusion_tag('blog/tags/sidebar.html')
+@register.inclusion_tag('Coco/tags/sidebar.html')
 def load_sidebar(user, linktype):
     """
     加载侧边栏
@@ -178,7 +178,7 @@ def load_sidebar(user, linktype):
     }
 
 
-@register.inclusion_tag('blog/tags/article_meta_info.html')
+@register.inclusion_tag('Coco/tags/article_meta_info.html')
 def load_article_metas(article, user):
     """
     获得文章meta信息
@@ -191,7 +191,7 @@ def load_article_metas(article, user):
     }
 
 
-@register.inclusion_tag('blog/tags/article_pagination.html')
+@register.inclusion_tag('Coco/tags/article_pagination.html')
 def load_pagination_info(page_obj, page_type, tag_name):
     previous_url = ''
     next_url = ''
@@ -270,7 +270,7 @@ def load_nav_info():
 """
 
 
-@register.inclusion_tag('blog/tags/article_info.html')
+@register.inclusion_tag('Coco/tags/article_info.html')
 def load_article_detail(article, isindex, user):
     """
     加载文章详情
