@@ -1,5 +1,5 @@
 from django.test import Client, RequestFactory, TestCase
-from blog.models import Article, Category, Tag
+from blog.models import Coco, Category, Tag
 from django.contrib.auth import get_user_model
 from DjangoBlog.utils import delete_view_cache, delete_sidebar_cache
 from accounts.models import BlogUser
@@ -37,7 +37,7 @@ class AccountTest(TestCase):
         category.last_mod_time = timezone.now()
         category.save()
 
-        article = Article()
+        article = Coco()
         article.title = "nicetitleaaa"
         article.body = "nicecontentaaa"
         article.author = user
@@ -84,7 +84,7 @@ class AccountTest(TestCase):
         category.last_mod_time = timezone.now()
         category.save()
 
-        article = Article()
+        article = Coco()
         article.category = category
         article.title = "nicetitle333"
         article.body = "nicecontentttt"

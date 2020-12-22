@@ -3,7 +3,7 @@ from DjangoBlog.utils import get_current_site
 from .models import commands
 from django.utils import timezone
 from accounts.models import BlogUser
-from blog.models import Category, Article
+from blog.models import Category, Coco
 from .robot import search, category, recents
 from werobot.messages.messages import TextMessage
 from .robot import MessageHandler, CommandHandler
@@ -36,7 +36,7 @@ class ServerManagerTest(TestCase):
         c.last_mod_time = timezone.now()
         c.save()
 
-        article = Article()
+        article = Coco()
         article.title = "nicetitleccc"
         article.body = "nicecontentccc"
         article.author = user

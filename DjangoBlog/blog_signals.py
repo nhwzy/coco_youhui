@@ -25,9 +25,8 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out, user_lo
 from DjangoBlog.utils import cache, send_email, expire_view_cache, delete_sidebar_cache, delete_view_cache
 from DjangoBlog.spider_notify import SpiderNotify
 from oauth.models import OAuthUser
-from blog.models import Article, Category, Tag, Links, SideBar, BlogSettings
-from comments.models import Comment
-from comments.utils import send_comment_email
+from blog.models import Coco, Category, Tag, Links, SideBar, BlogSettings
+
 import _thread
 import logging
 
@@ -103,27 +102,6 @@ def model_post_save_callback(
                 logger.error("notify sipder", ex)
         if not is_update_views:
             clearcache = True
-    if isinstance(instance, Comment):
-
-        path = instance.article.get_absolute_url()
-        site = get_current_site().domain
-        if site.find(':') > 0:
-            site = site[0:site.find(':')]
-
-        expire_view_cache(
-            path,
-            servername=site,
-            serverport=80,
-            key_prefix='blogdetail')
-        if cache.get('seo_processor'):
-            cache.delete('seo_processor')
-        comment_cache_key = 'article_comments_{id}'.format(
-            id=instance.article.id)
-        cache.delete(comment_cache_key)
-        delete_sidebar_cache(instance.author.username)
-        delete_view_cache('article_comments', [str(instance.article.pk)])
-
-        _thread.start_new(send_comment_email, (instance,))
 
     if clearcache:
         cache.clear()

@@ -13,9 +13,11 @@
     <meta charset="UTF-8">
 {% endblock %}
 {% block content %}
-<video width="500" height="300" autoplay="autoplay" loop="loop" controls>
+<video width="500" height="300" autoplay="autoplay" loop="loop" >
     <source src={% static '/blog/img/1.mp4' %} type="video/mp4">
 </video>
+    <body style="background-image: url({% static 'blog/img/2.jpg' %});
+                    background-size:100% 100%;background-repeat:no-repeat;">
 {% endblock %}
 {% block sidebar %}
     {% with request.user.username|add:linktype as cachekey %}

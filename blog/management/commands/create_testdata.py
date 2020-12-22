@@ -14,7 +14,7 @@
 """
 
 from django.core.management.base import BaseCommand
-from blog.models import Article, Tag, Category
+from blog.models import Coco, Tag, Category
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 import datetime
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         basetag.name = "标签"
         basetag.save()
         for i in range(1, 20):
-            article = Article.objects.get_or_create(
+            article = Coco.objects.get_or_create(
                 category=category,
                 title='nice title ' + str(i),
                 body='nice content ' + str(i),

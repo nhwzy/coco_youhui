@@ -1,0 +1,71 @@
+{% extends 'share_layout/base.html' %}
+{% load blog_tags %}
+{% load cache %}
+{% block header %}
+
+    <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
+    <meta property="og:type" content="blog"/>
+    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <meta charset="utf-8">
+
+{% endblock %}
+{% block content %}
+    <div id="wrapper"></div>
+    <style>
+	#wrapper{
+		width: 500px;
+		height: 500px;
+	}
+    </style>
+
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.8&key=8111e9c5396d32e7d5398817a9aaf23d"></script>
+
+<script>
+	window.onload = function(){
+		var map = new AMap.Map('wrapper');
+	    AMap.plugin('AMap.ToolBar',function(){
+        var toolbar = new AMap.ToolBar();
+        map.addControl(toolbar);
+        });
+        AMap.plugin(['AMap.ToolBar','AMap.Driving'],function(){
+        var toolbar = new AMap.ToolBar();
+        map.addControl(toolbar);
+        var driving = new AMap.Driving();
+        driving.search()
+	    });
+		map.plugin('AMap.Geolocation', function() {
+	    var geolocation = new AMap.Geolocation({
+
+	    enableHighAccuracy: true,
+
+	    timeout: 10000,
+
+	    buttonOffset: new AMap.Pixel(10, 20),
+
+	    zoomToAccuracy: true,
+
+	    buttonPosition: 'RB'
+	  })
+
+	  geolocation.getCurrentPosition()
+	  AMap.event.addListener(geolocation, 'complete', onComplete)
+	  AMap.event.addListener(geolocation, 'error', onError)
+
+	  function onComplete (data) {
+          this._position = [data.position.getLng(),data.position.getLat()];
+	  }
+
+	  function onError (data) {
+
+	  }
+	})
+        map.setCenter(this._position);
+        map.setZoomAndCenter(13, this._position);
+	}
+</script>
+
+{% endblock %}

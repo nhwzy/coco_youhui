@@ -12,7 +12,7 @@
 """
 from elasticsearch_dsl.connections import connections
 import time
-from blog.models import Article, Category, Tag
+from blog.models import Coco, Category, Tag
 from elasticsearch_dsl import Document, Date, Integer, Long, Keyword, Text, Object, Boolean
 
 from django.conf import settings
@@ -136,7 +136,7 @@ class ArticleDocumentManager():
 
     def rebuild(self, articles=None):
         ArticleDocument.init()
-        articles = articles if articles else Article.objects.all()
+        articles = articles if articles else Coco.objects.all()
         docs = self.convert_to_doc(articles)
         for doc in docs:
             doc.save()

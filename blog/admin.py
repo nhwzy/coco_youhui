@@ -1,6 +1,6 @@
 from django.contrib import admin
 # Register your models here.
-from .models import Article, Category, Tag, Links, SideBar, BlogSettings
+from .models import Coco, Category, Tag, Links, SideBar, BlogSettings
 from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
@@ -13,7 +13,7 @@ class ArticleListFilter(admin.SimpleListFilter):
     parameter_name = 'author'
 
     def lookups(self, request, model_admin):
-        authors = list(set(map(lambda x: x.author, Article.objects.all())))
+        authors = list(set(map(lambda x: x.author, Coco.objects.all())))
         for author in authors:
             yield (author.id, _(author.username))
 
@@ -29,7 +29,7 @@ class ArticleForm(forms.ModelForm):
     # body = forms.CharField(widget=AdminPagedownWidget())
 
     class Meta:
-        model = Article
+        model = Coco
         fields = '__all__'
 
 

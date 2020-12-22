@@ -31,9 +31,9 @@ class BaseModel(models.Model):
     def save(self, *args, **kwargs):
         is_update_views = isinstance(
             self,
-            Article) and 'update_fields' in kwargs and kwargs['update_fields'] == ['views']
+            Coco) and 'update_fields' in kwargs and kwargs['update_fields'] == ['views']
         if is_update_views:
-            Article.objects.filter(pk=self.pk).update(views=self.views)
+            Coco.objects.filter(pk=self.pk).update(views=self.views)
         else:
             if 'slug' in self.__dict__:
                 slug = getattr(
@@ -56,7 +56,8 @@ class BaseModel(models.Model):
         pass
 
 
-class Article(BaseModel):
+class Coco(BaseModel):
+    """Coco"""
     """文章"""
     STATUS_CHOICES = (
         ('d', '草稿'),
@@ -155,13 +156,14 @@ class Article(BaseModel):
     @cache_decorator(expiration=60 * 100)
     def next_article(self):
         # 下一篇
-        return Article.objects.filter(
+        return Coco.objects.filter(
             id__gt=self.id, status='p').order_by('id').first()
 
     @cache_decorator(expiration=60 * 100)
     def prev_article(self):
         # 前一篇
-        return Article.objects.filter(id__lt=self.id, status='p').first()
+        return Coco.objects.filter(id__lt=self.id, status='p').first()
+
 
 
 class Category(BaseModel):
@@ -239,13 +241,26 @@ class Tag(BaseModel):
 
     @cache_decorator(60 * 60 * 10)
     def get_article_count(self):
-        return Article.objects.filter(tags__name=self.name).distinct().count()
+        return Coco.objects.filter(tags__name=self.name).distinct().count()
 
     class Meta:
         ordering = ['name']
         verbose_name = "标签"
         verbose_name_plural = verbose_name
 
+class Location(models.Model):
+    '''
+    获取定位
+    '''
+    name = models.CharField('位置名称', max_length=30, unique=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = "位置"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 class Links(models.Model):
     """友情链接"""

@@ -21,7 +21,7 @@ from haystack.backends import BaseEngine, BaseSearchBackend, BaseSearchQuery, Em
 from haystack.models import SearchResult
 from haystack.utils import log as logging
 
-from blog.models import Article
+from blog.models import Coco
 from blog.documents import ArticleDocument, ArticleDocumentManager
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ class ElasticSearchBackend(BaseSearchBackend):
         #     pass
 
     def _get_models(self, iterable):
-        models = iterable if iterable else Article.objects.all()
+        models = iterable if iterable else Coco.objects.all()
         docs = self.manager.convert_to_doc(models)
         return docs
 
@@ -56,7 +56,7 @@ class ElasticSearchBackend(BaseSearchBackend):
         return True
 
     def _rebuild(self, models):
-        models = models if models else Article.objects.all()
+        models = models if models else Coco.objects.all()
         docs = self.manager.convert_to_doc(models)
         self.manager.update_docs(docs)
 

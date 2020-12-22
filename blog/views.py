@@ -12,8 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from DjangoBlog.utils import cache, get_md5, get_blog_setting
 from django.shortcuts import get_object_or_404
-from blog.models import Article, Category, Tag, Links, LinkShowType
-from comments.forms import CommentForm
+from blog.models import Coco, Category, Tag, Links, LinkShowType,Location
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -92,14 +92,16 @@ class ArchivesView(CocoListView):
     template_name = 'Coco/Coco_archives.html'
 
     def get_queryset_data(self):
-        return Article.objects.filter(status='p').all()
+        return Coco.objects.filter(status='p').all()
 
     def get_queryset_cache_key(self):
         cache_key = 'archives'
         return cache_key
 
 class IndexView(CocoListView):
-    
+    '''
+    首页
+    '''
 
     page_type = '首页'
     paginate_by = None
@@ -107,14 +109,25 @@ class IndexView(CocoListView):
     template_name = 'Coco/Coco_index.html'
 
     def get_queryset_data(self):
-        return Article.objects.filter(status='p').all()
+        return Coco.objects.filter(status='i').all()
 
     def get_queryset_cache_key(self):
         cache_key = 'index'
         return cache_key
 
+class LocationView(ListView):
+    '''
+    获取定位
+    '''
+    model = Location
+
+    template_name = 'Coco/Coco_location.html'
+    def get_queryset(self):
+        return Location.objects.filter()
 
 
+def locationis(request):
+    return HttpResponse("ok")
 
 class LinkListView(ListView):
     model = Links

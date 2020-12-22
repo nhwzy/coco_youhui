@@ -14,7 +14,7 @@
 """
 
 from django.test import Client, RequestFactory, TestCase
-from blog.models import Article, Category, Tag
+from blog.models import Coco, Category, Tag
 from django.contrib.auth import get_user_model
 from DjangoBlog.utils import get_current_site
 from django.urls import reverse

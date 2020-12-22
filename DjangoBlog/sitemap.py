@@ -14,7 +14,7 @@
 """
 
 from django.contrib.sitemaps import Sitemap
-from blog.models import Article, Category, Tag
+from blog.models import Coco, Category, Tag
 from accounts.models import BlogUser
 from django.contrib.sitemaps import GenericSitemap
 from django.urls import reverse
@@ -36,7 +36,7 @@ class ArticleSiteMap(Sitemap):
     priority = "0.6"
 
     def items(self):
-        return Article.objects.filter(status='p')
+        return Coco.objects.filter(status='p')
 
     def lastmod(self, obj):
         return obj.last_mod_time
@@ -69,7 +69,7 @@ class UserSiteMap(Sitemap):
     priority = "0.3"
 
     def items(self):
-        return list(set(map(lambda x: x.author, Article.objects.all())))
+        return list(set(map(lambda x: x.author, Coco.objects.all())))
 
     def lastmod(self, obj):
         return obj.date_joined

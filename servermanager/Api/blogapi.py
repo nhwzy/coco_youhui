@@ -12,7 +12,7 @@
 @file: blogapi.py
 @time: 2017/8/27 上午11:40
 """
-from blog.models import Article, Category, Tag
+from blog.models import Coco, Category, Tag
 from haystack.query import EmptySearchQuerySet, SearchQuerySet
 
 
@@ -31,10 +31,10 @@ class BlogApi():
         return Category.objects.all()
 
     def get_category_articles(self, categoryname):
-        articles = Article.objects.filter(category__name=categoryname)
+        articles = Coco.objects.filter(category__name=categoryname)
         if articles:
             return articles[:self.__max_takecount__]
         return None
 
     def get_recent_articles(self):
-        return Article.objects.all()[:self.__max_takecount__]
+        return Coco.objects.all()[:self.__max_takecount__]

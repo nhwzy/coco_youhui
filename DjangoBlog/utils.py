@@ -19,10 +19,6 @@ import os
 logger = logging.getLogger(__name__)
 
 
-def get_max_articleid_commentid():
-    from blog.models import Article
-    from comments.models import Comment
-    return (Article.objects.latest().pk, Comment.objects.latest().pk)
 
 
 def get_md5(str):

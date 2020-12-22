@@ -52,10 +52,8 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'accounts',
-    'comments',
     'oauth',
     'servermanager',
-    'owntracks',
     'compressor',
     'bootstrap4',
 ]

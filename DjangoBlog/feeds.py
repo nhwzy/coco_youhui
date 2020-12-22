@@ -14,7 +14,7 @@
 """
 
 from django.contrib.syndication.views import Feed
-from blog.models import Article
+from blog.models import Coco
 from django.conf import settings
 from django.utils.feedgenerator import Rss201rev2Feed
 from DjangoBlog.utils import CommonMarkdown
@@ -36,7 +36,7 @@ class DjangoBlogFeed(Feed):
         return get_user_model().objects.first().get_absolute_url()
 
     def items(self):
-        return Article.objects.filter(type='a', status='p').order_by('-pub_time')[:5]
+        return Coco.objects.filter(type='a', status='p').order_by('-pub_time')[:5]
 
     def item_title(self, item):
         return item.title

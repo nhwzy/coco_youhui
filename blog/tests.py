@@ -1,10 +1,10 @@
 from django.test import Client, RequestFactory, TestCase
-from blog.models import Article, Category, Tag, SideBar, Links
+from blog.models import Coco, Category, Tag, SideBar, Links
 from django.contrib.auth import get_user_model
 from DjangoBlog.utils import get_current_site, get_md5
 from blog.forms import BlogSearchForm
 from django.core.paginator import Paginator
-from blog.templatetags.blog_tags import load_pagination_info, load_articletags
+from blog.templatetags.blog_tags import  load_articletags
 from accounts.models import BlogUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
@@ -50,7 +50,7 @@ class ArticleTest(TestCase):
         tag.name = "nicetag"
         tag.save()
 
-        article = Article()
+        article = Coco()
         article.title = "nicetitle"
         article.body = "nicecontent"
         article.author = user
@@ -65,7 +65,7 @@ class ArticleTest(TestCase):
         self.assertEqual(1, article.tags.count())
 
         for i in range(20):
-            article = Article()
+            article = Coco()
             article.title = "nicetitle" + str(i)
             article.body = "nicetitle" + str(i)
             article.author = user
@@ -100,18 +100,18 @@ class ArticleTest(TestCase):
         response = self.client.get(reverse('blog:archives'))
         self.assertEqual(response.status_code, 200)
 
-        p = Paginator(Article.objects.all(), 2)
+        p = Paginator(Coco.objects.all(), 2)
         self.__check_pagination__(p, '', '')
 
-        p = Paginator(Article.objects.filter(tags=tag), 2)
+        p = Paginator(Coco.objects.filter(tags=tag), 2)
         self.__check_pagination__(p, '分类标签归档', tag.slug)
 
         p = Paginator(
-            Article.objects.filter(
+            Coco.objects.filter(
                 author__username='liangliangyy'), 2)
         self.__check_pagination__(p, '作者文章归档', 'liangliangyy')
 
-        p = Paginator(Article.objects.filter(category=category), 2)
+        p = Paginator(Coco.objects.filter(category=category), 2)
         self.__check_pagination__(p, '分类目录归档', category.slug)
 
         f = BlogSearchForm()

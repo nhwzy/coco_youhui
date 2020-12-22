@@ -40,14 +40,9 @@ urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'', include('blog.urls', namespace='blog')),
     url(r'mdeditor/', include('mdeditor.urls')),
-    url(r'', include('comments.urls', namespace='comment')),
     url(r'', include('accounts.urls', namespace='account')),
     url(r'', include('oauth.urls', namespace='oauth')),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
-        name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^search', include('haystack.urls'), name='search'),
     url(r'', include('servermanager.urls', namespace='servermanager')),
-    url(r'', include('owntracks.urls', namespace='owntracks')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

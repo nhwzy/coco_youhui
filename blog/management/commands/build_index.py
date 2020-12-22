@@ -14,7 +14,7 @@
 from blog.documents import ElapsedTimeDocument, ArticleDocumentManager
 
 from django.core.management.base import BaseCommand
-from blog.models import Article
+from blog.models import Coco
 
 
 # TODO 参数化

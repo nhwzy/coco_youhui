@@ -16,7 +16,11 @@ urlpatterns = [
     cache_page(
             60 * 60)(
             views.ArchivesView.as_view()),
-         name='archives',),
+         name='archives'),
+
+    path('location.html',
+        views.LocationView.as_view(),
+         name='location'),
     path(
         'links.html',
         views.LinkListView.as_view(),
@@ -28,4 +32,7 @@ urlpatterns = [
     path(
         r'refresh',
         views.refresh_memcache,
-        name='refresh')]
+        name='refresh'),
+    path(r'locationis',
+         views.locationis,
+         name='locationis'),]
