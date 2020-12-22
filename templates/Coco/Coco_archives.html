@@ -16,6 +16,7 @@
 
 {% endblock %}
 {% block content %}
+
     <div id="primary" class="site-content">
         <div id="content" role="main">
 
@@ -24,13 +25,21 @@
                 <p class="archive-title">热门奶茶</p>
             </header><!-- .archive-header -->
             <div class="entry-content">
-                <li><a href="">茉香奶茶 </a> </li>
-                <li><a href="">coco奶茶</a> </li>
+
+                <a style="margin-left: 70px"></a>
+                珍珠奶茶
+                <a style="margin-right: 300px"> </a>
+                coco奶茶
+                <img width="200"height="200"src={% static 'blog/img/3.png'%}>
+                <a style="margin-right: 150px"></a>
+                <img width="200"height="200"src={% static 'blog/img/4.png'%}> <br>
+
             </div>
         </div><!-- #content -->
     </div><!-- #primary -->
 
 {% endblock %}
+
 {% block sidebar %}
     {% load_sidebar user 'i' %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'share_layout/base.html' %}
 {% load blog_tags %}
 {% load cache %}
+{% load static %}
 {% block header %}
     <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
     <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
@@ -9,6 +10,12 @@
     <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
     <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
     <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <meta charset="UTF-8">
+{% endblock %}
+{% block content %}
+<video width="500" height="300" autoplay="autoplay" loop="loop" controls>
+    <source src={% static '/blog/img/1.mp4' %} type="video/mp4">
+</video>
 {% endblock %}
 {% block sidebar %}
     {% with request.user.username|add:linktype as cachekey %}
