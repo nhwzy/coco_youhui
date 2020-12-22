@@ -127,7 +127,8 @@ class LocationView(ListView):
 
 
 def locationis(request):
-    return HttpResponse("ok")
+
+    return HttpResponse("授权成功")
 
 class LinkListView(ListView):
     model = Links
