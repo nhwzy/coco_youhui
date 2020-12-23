@@ -65,8 +65,13 @@
 	})
         map.setCenter(this._position);
         map.setZoomAndCenter(13, this._position);
+        var marker = new AMap.Marker({
+            position: new AMap.LngLat(118.8435, 31.95093),
+            title: 'CoCo都可茶饮'
+            });
 
-	
+        // 将创建的点标记添加到已有的地图实例：
+        map.add(marker);
 	}
 </script>
 
