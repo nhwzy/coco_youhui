@@ -15,12 +15,10 @@
 {% endblock %}
 {% block content %}
 
-
-
     <div id="wrapper"></div>
     <style>
 	#wrapper{
-		width: 500px;
+		width: 800px;
 		height: 500px;
 	}
     </style>
@@ -28,54 +26,135 @@
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.8&key=8111e9c5396d32e7d5398817a9aaf23d"></script>
 
 <script>
-	window.onload = function(){
-		var map = new AMap.Map('wrapper');
-	    AMap.plugin('AMap.ToolBar',function(){
-        var toolbar = new AMap.ToolBar();
-        map.addControl(toolbar);
+	window.onload = function() {
+        var map = new AMap.Map('wrapper');
+        AMap.plugin('AMap.ToolBar', function () {
+            var toolbar = new AMap.ToolBar();
+            map.addControl(toolbar);
         });
-        AMap.plugin(['AMap.ToolBar','AMap.Driving'],function(){
-        var toolbar = new AMap.ToolBar();
-        map.addControl(toolbar);
-        var driving = new AMap.Driving();
-        driving.search()
-	    });
-		map.plugin('AMap.Geolocation', function() {
-	    var geolocation = new AMap.Geolocation({
+        AMap.plugin(['AMap.ToolBar', 'AMap.Driving'], function () {
+            var toolbar = new AMap.ToolBar();
+            map.addControl(toolbar);
+            var driving = new AMap.Driving();
+            driving.search()
+        });
+        map.plugin('AMap.Geolocation', function () {
+            var geolocation = new AMap.Geolocation({
 
-	    enableHighAccuracy: true,
+                enableHighAccuracy: true,
 
-	    timeout: 10000,
+                timeout: 10000,
 
-	    buttonOffset: new AMap.Pixel(10, 20),
+                buttonOffset: new AMap.Pixel(10, 20),
 
-	    zoomToAccuracy: true,
+                zoomToAccuracy: true,
 
-	    buttonPosition: 'RB'
-	  })
+                buttonPosition: 'RB'
+            })
 
-	  geolocation.getCurrentPosition()
-	  AMap.event.addListener(geolocation, 'complete', onComplete)
-	  AMap.event.addListener(geolocation, 'error', onError)
+            geolocation.getCurrentPosition()
+            AMap.event.addListener(geolocation, 'complete', onComplete)
+            AMap.event.addListener(geolocation, 'error', onError)
 
-	  function onComplete (data) {
-          this._position = [data.position.getLng(),data.position.getLat()];
-	  }
+            function onComplete(data) {
+                this._position = [data.position.getLng(), data.position.getLat()];
+            }
 
-	  function onError (data) {
+            function onError(data) {
 
-	  }
-	})
-    map.setCenter(this._position);
+            }
+        })
+
+        map.setCenter(this._position);
         map.setZoomAndCenter(13, this._position);
-        var marker = new AMap.Marker({
-            position: new AMap.LngLat(118.8435, 31.95093),
-            title: 'CoCo都可茶饮'
-            });
 
-        // 将创建的点标记添加到已有的地图实例：
-        map.add(marker);
-	}
+        var marker1 = new AMap.Marker({
+            position: new AMap.LngLat(118.8435, 31.95093),
+            title1: 'CoCo都可茶饮(江宁万达金街店）'
+        });
+        var marker2 = new AMap.Marker({
+            position: new AMap.LngLat(118.8232, 31.9272),
+            title: 'CoCo都可茶饮'
+        });
+        var marker3 = new AMap.Marker({
+            position: new AMap.LngLat(118.9845, 31.85955),
+            title: 'CoCo都可茶饮'
+        });
+        var marker4 = new AMap.Marker({
+            position: new AMap.LngLat(118.7851, 31.94378),
+            title: 'CoCo都可茶饮'
+        });
+        var marker5 = new AMap.Marker({
+            position: new AMap.LngLat(118.8207, 31.93245),
+            title: 'CoCo都可茶饮'
+        });
+        var marker6 = new AMap.Marker({
+            position: new AMap.LngLat(118.8428, 31.95266),
+            title: 'CoCo都可茶饮'
+        });
+        var marker7 = new AMap.Marker({
+            position: new AMap.LngLat(118.8552, 31.94985),
+            title: 'CoCo都可茶饮'
+        });
+        var marker8 = new AMap.Marker({
+            position: new AMap.LngLat(118.9277, 32.04874),
+            title: 'CoCo都可茶饮'
+        });
+        var marker9 = new AMap.Marker({
+            position: new AMap.LngLat(118.0642, 32.05425),
+            title: 'CoCo都可茶饮'
+        });
+        var markerList = [marker1, marker2, marker3, marker4, marker5, marker6, marker7, marker8, marker9]
+        map.add(markerList);
+
+        // 信息窗体的内容
+    var content = [
+        "Coco都可茶饮(xxx店)",
+        "地址:xx市xx区xx路xx号",
+        "优惠相关信息:",
+        "xx奶茶  原价：xxx元  现价：xxx元",
+        "xx奶茶  原价：xxx元  现价：xxx元",
+        "xx奶茶  原价：xxx元  现价：xxx元",
+        "xx奶茶  原价：xxx元  现价：xxx元"
+    ];
+    var infoWindow = new AMap.InfoWindow({
+        content: content.join("<br>")
+    });
+    AMap.event.addListener(marker1, 'click', function () {
+        infoWindow.open(map,marker1.getPosition());
+    });
+    AMap.event.addListener(marker2, 'click', function () {
+        infoWindow.open(map,marker2.getPosition());
+    });
+    AMap.event.addListener(marker3, 'click', function () {
+        infoWindow.open(map,marker3.getPosition());
+    });
+    AMap.event.addListener(marker4, 'click', function () {
+        infoWindow.open(map,marker4.getPosition());
+    });
+    AMap.event.addListener(marker5, 'click', function () {
+        infoWindow.open(map,marker5.getPosition());
+    });
+    AMap.event.addListener(marker6, 'click', function () {
+        infoWindow.open(map,marker6.getPosition());
+    });
+    AMap.event.addListener(marker7, 'click', function () {
+        infoWindow.open(map,marker7.getPosition());
+    });
+    AMap.event.addListener(marker8, 'click', function () {
+        infoWindow.open(map,marker8.getPosition());
+    });
+    AMap.event.addListener(marker9, 'click', function () {
+        infoWindow.open(map,marker9.getPosition());
+    });
+
+
+
+    }
+
+
+
+
 </script>
 
 {% endblock %}

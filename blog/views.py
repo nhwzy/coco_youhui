@@ -115,17 +115,14 @@ class IndexView(CocoListView):
         cache_key = 'index'
         return cache_key
 
-class LocationView(ListView):
     '''
     获取定位
     '''
+class LocationView(ListView):
     model = Location
-
     template_name = 'Coco/Coco_location.html'
     def get_queryset(self):
-        return Location.objects.filter()
-    def get_location(request):
-        return render(request,'Coco/Coco_location.html',{'Location':Location})
+        return Location.objects.filter().all()
 
 
 def locationis(request):
