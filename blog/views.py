@@ -124,6 +124,8 @@ class LocationView(ListView):
     template_name = 'Coco/Coco_location.html'
     def get_queryset(self):
         return Location.objects.filter()
+    def get_location(request):
+        return render(request,'Coco/Coco_location.html',{'Location':Location})
 
 
 def locationis(request):
@@ -190,7 +192,6 @@ def fileupload(request):
 @login_required
 def refresh_memcache(request):
     try:
-
         if request.user.is_superuser:
             from DjangoBlog.utils import cache
             if cache and cache is not None:

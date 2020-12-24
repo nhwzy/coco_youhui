@@ -58,7 +58,6 @@ class BaseModel(models.Model):
 
 class Coco(BaseModel):
     """Coco"""
-    """文章"""
     STATUS_CHOICES = (
         ('d', '草稿'),
         ('p', '发表'),
@@ -115,13 +114,6 @@ class Coco(BaseModel):
         verbose_name_plural = verbose_name
         get_latest_by = 'id'
 
-    def get_absolute_url(self):
-        return reverse('blog:detailbyid', kwargs={
-            'article_id': self.id,
-            'year': self.created_time.year,
-            'month': self.created_time.month,
-            'day': self.created_time.day
-        })
 
     @cache_decorator(60 * 60 * 10)
     def get_category_tree(self):
@@ -130,44 +122,18 @@ class Coco(BaseModel):
 
         return names
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
     def viewed(self):
         self.views += 1
         self.save(update_fields=['views'])
 
-    def comment_list(self):
-        cache_key = 'article_comments_{id}'.format(id=self.id)
-        value = cache.get(cache_key)
-        if value:
-            logger.info('get article comments:{id}'.format(id=self.id))
-            return value
-        else:
-            comments = self.comment_set.filter(is_enable=True)
-            cache.set(cache_key, comments, 60 * 100)
-            logger.info('set article comments:{id}'.format(id=self.id))
-            return comments
 
-    def get_admin_url(self):
-        info = (self._meta.app_label, self._meta.model_name)
-        return reverse('admin:%s_%s_change' % info, args=(self.pk,))
 
-    @cache_decorator(expiration=60 * 100)
-    def next_article(self):
-        # 下一篇
-        return Coco.objects.filter(
-            id__gt=self.id, status='p').order_by('id').first()
-
-    @cache_decorator(expiration=60 * 100)
-    def prev_article(self):
-        # 前一篇
-        return Coco.objects.filter(id__lt=self.id, status='p').first()
 
 
 
 class Category(BaseModel):
-    """文章分类"""
+    """分类"""
     name = models.CharField('分类名', max_length=30, unique=True)
     parent_category = models.ForeignKey(
         'self',
@@ -253,7 +219,8 @@ class Location(models.Model):
     获取定位
     '''
     name = models.CharField('位置名称', max_length=30, unique=True)
-
+    x = models.FloatField('x',default=float)
+    y = models.FloatField('y',default=float)
     class Meta:
         ordering = ['name']
         verbose_name = "位置"
@@ -261,6 +228,7 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Links(models.Model):
     """友情链接"""
